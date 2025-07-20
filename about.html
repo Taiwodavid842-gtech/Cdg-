@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Christian Daily Guide</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #8e793e;
+            --accent: #3498db;
+            --light: #f8f9fa;
+            --dark: #1a252f;
+            --success: #27ae60;
+            --font-heading: 'Merriweather', serif;
+            --font-body: 'Open Sans', sans-serif;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e7ec 100%);
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        header {
+            background: linear-gradient(120deg, var(--primary) 0%, #1a252f 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+            position: relative;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+        }
+        
+        .logo-text {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .logo-text span {
+            color: var(--secondary);
+        }
+        
+        nav {
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-links a.active {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-left: 1.5rem;
+        }
+        
+        .btn {
+            padding: 0.6rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Mobile Menu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            padding: 10px;
+            z-index: 1001;
+            transition: all 0.3s ease;
+        }
+        
+        .hamburger .line {
+            display: block;
+            width: 30px;
+            height: 3px;
+            background: var(--secondary);
+            margin: 6px 0;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+        
+        .hamburger.active .line:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+        
+        .hamburger.active .line:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active .line:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+        
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 280px;
+            height: 100vh;
+            background: var(--dark);
+            padding: 100px 2rem 2rem;
+            z-index: 999;
+            transition: all 0.4s ease;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .mobile-menu.active {
+            right: 0;
+        }
+        
+        .mobile-nav-links {
+            list-style: none;
+        }
+        
+        .mobile-nav-links li {
+            margin-bottom: 1.5rem;
+        }
+        
+        .mobile-nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-nav-links a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .mobile-auth-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .close-menu {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .close-menu:hover {
+            transform: rotate(90deg);
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* About Hero */
+        .about-hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(26, 37, 47, 0.9)), url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 6rem 2rem;
+        }
+        
+        .about-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .about-hero h1 {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .about-hero p {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        /* About Content */
+        .about-container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+        
+        .about-section {
+            margin-bottom: 4rem;
+        }
+        
+        .about-title {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .about-subtitle {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+        
+        .mission-vision {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin: 3rem 0;
+        }
+        
+        .mission-card, .vision-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .mission-card {
+            border-top: 5px solid var(--secondary);
+        }
+        
+        .vision-card {
+            border-top: 5px solid var(--primary);
+        }
+        
+        .team-section {
+            text-align: center;
+            margin: 4rem 0;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+        
+        .team-member {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .team-member-image {
+            height: 350px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .team-member-content {
+            padding: 1.5rem;
+        }
+        
+        .team-member-name {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .team-member-role {
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .team-member-bio {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .social-link {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: rgba(142, 121, 62, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary);
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background: var(--secondary);
+            color: white;
+        }
+        
+        .values-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .value-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .value-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .value-title {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .value-description {
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        .cta-section {
+            background: linear-gradient(to right, var(--primary), #1a252f);
+            color: white;
+            padding: 4rem 2rem;
+            margin: 4rem 0;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .cta-title {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .cta-description {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 4rem 2rem 2rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+        
+        .footer-logo {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-logo span {
+            color: var(--secondary);
+        }
+        
+        .footer-about {
+            color: #aaa;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-heading {
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-heading::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--secondary);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+        
+        .footer-social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .footer-social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-social-icon:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #777;
+        }
+        
+        @media (max-width: 992px) {
+            .nav-links,
+            .auth-buttons {
+                display: none;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .about-hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .about-hero p {
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .about-hero {
+                padding: 4rem 1rem;
+            }
+            
+            .about-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .about-title {
+                font-size: 2rem;
+            }
+            
+            .about-subtitle {
+                font-size: 1.5rem;
+            }
+            
+            .team-member-image {
+                height: 200px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header-content {
+                padding: 0 1rem;
+            }
+            
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            
+            .mission-vision {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-cross logo-icon"></i>
+                <div class="logo-text">Christian <span>Daily Guide</span></div>
+            </div>
+            
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="archive.html"><i class="fas fa-book-bible"></i> Archive</a></li>
+                    <li><a href="downloads.html"><i class="fas fa-download"></i> Downloads</a></li>
+                    <li><a href="prayer.html"><i class="fas fa-pray"></i> Prayer Requests</a></li>
+                    <li><a href="about.html" class="active"><i class="fas fa-info-circle"></i> About</a></li>
+                </ul>
+                
+                <div class="auth-buttons">
+                    <button class="btn btn-outline">Login</button>
+                    <button class="btn btn-primary">Sign Up</button>
+                </div>
+            </nav>
+            
+            <button class="hamburger">
+                <span class="line"></span>
+                <span class="line"></span>
+                <span class="line"></span>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu">
+            <button class="close-menu">
+                <i class="fas fa-times"></i>
+            </button>
+            <ul class="mobile-nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="archive.html"><i class="fas fa-book-bible"></i> Archive</a></li>
+                <li><a href="downloads.html"><i class="fas fa-download"></i> Downloads</a></li>
+                <li><a href="prayer.html"><i class="fas fa-pray"></i> Prayer Requests</a></li>
+                <li><a href="about.html" class="active"><i class="fas fa-info-circle"></i> About</a></li>
+            </ul>
+            <div class="mobile-auth-buttons">
+                <button class="btn btn-outline">Login</button>
+                <button class="btn btn-primary">Sign Up</button>
+            </div>
+        </div>
+        
+        <div class="overlay"></div>
+    </header>
+
+    <!-- About Hero Section -->
+    <section class="about-hero">
+        <div class="about-hero-content">
+            <h1>Our Mission & Story</h1>
+            <p>Discover the heart behind Christian Daily Guide and the team dedicated to your spiritual growth</p>
+            <button class="btn btn-primary"><i class="fas fa-book-open"></i> Read Our Story</button>
+        </div>
+    </section>
+
+    <!-- About Content Section -->
+    <section class="about-container">
+        <div class="about-section">
+            <h2 class="about-title">Our Story</h2>
+            <p class="about-text">Christian Daily Guide 📜 was founded on January 15th, 2025, as a single WhatsApp group with a big vision—to provide daily spiritual nourishment to believers across the globe. What began with simple morning prayers has now blossomed into a comprehensive platform, serving hundreds of Christians daily with devotionals, prayers, teachings, and a thriving community rooted in faith.</p>
+            <p class="about-text">Founded by Admin Taiwo David and a team of devoted Christians, Christian Daily Guide 📜 was born out of a heartfelt desire to help believers begin and end each day with God’s Word. We recognized the growing need for accessible, biblically sound resources that could seamlessly fit into people’s busy lives—while strengthening their walk with Christ and fostering a consistent spiritual rhythm.</p>
+           
+            <p class="about-text">Today, Christian Daily Guide 📜 reaches believers in over three countries through our growing network of WhatsApp platforms. Though we are still expanding, our commitment remains steadfast—to help Christians connect with God daily through heartfelt prayer and the truth of Scripture.</p>
+        </div>
+        
+        <div class="about-section">
+            <h2 class="about-title">Our Mission & Vision</h2>
+            <div class="mission-vision">
+                <div class="mission-card">
+                    <h3 class="about-subtitle">Our Mission</h3>
+                    <p class="about-text">To provide daily spiritual nourishment through biblical prayers, devotionals, and resources that help Christians grow in their faith and maintain a consistent walk with God.</p>
+                    <p class="about-text">"Let the word of Christ dwell in you richly, teaching and admonishing one another in all wisdom..." - Colossians 3:16</p>
+                </div>
+                <div class="vision-card">
+                    <h3 class="about-subtitle">Our Vision</h3>
+                    <p class="about-text">To see every Christian equipped with the spiritual tools they need to face each day with faith, hope, and the peace that comes from regular communion with God.</p>
+                    <p class="about-text">"Therefore encourage one another and build one another up, just as you are doing." - 1 Thessalonians 5:11</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="about-section">
+            <h2 class="about-title">Our Core Values</h2>
+            <div class="values-list">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-bible"></i>
+                    </div>
+                    <h3 class="value-title">Biblical Foundation</h3>
+                    <p class="value-description">Every resource we create is grounded in Scripture and sound doctrine, ensuring spiritual nourishment that aligns with God's Word.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-hands-praying"></i>
+                    </div>
+                    <h3 class="value-title">Prayer-Centered</h3>
+                    <p class="value-description">We believe in the power of prayer and strive to make prayer an integral part of every Christian's daily routine.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 class="value-title">Compassionate Service</h3>
+                    <p class="value-description">We serve with Christ-like love, meeting people where they are in their spiritual journey with grace and understanding.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-hand-holding-heart"></i>
+                    </div>
+                    <h3 class="value-title">Generosity</h3>
+                    <p class="value-description">Following Jesus' example, we freely give what we have received, keeping our resources free and accessible to all.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-people-group"></i>
+                    </div>
+                    <h3 class="value-title">Community</h3>
+                    <p class="value-description">We foster Christian fellowship and mutual encouragement, building up the body of Christ one believer at a time.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3 class="value-title">Innovation</h3>
+                    <p class="value-description">We creatively use technology and media to make spiritual growth resources available in fresh, engaging ways.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="team-section">
+            <h2 class="about-title">Meet Our Team</h2>
+            <p class="about-text">Behind Christian Daily Guide is a dedicated team of Admins, writers, editors, and technologists committed to serving your spiritual needs.</p>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="team-member-image" style="background-image: url('t.jpg')"></div>
+                    <div class="team-member-content">
+                        <h3 class="team-member-name">TAIWO DAVID </h3>
+                        <p class="team-member-role">Lead Admin </p>
+                        <p class="team-member-bio">With over a decade of walking faithfully with Christ, David felt a divine calling to establish Christian Daily Guide—a platform designed to help believers cultivate consistent and meaningful spiritual habits.</p>
+                        <div class="social-links">
+                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="team-member-image" style="background-image: url('e2.jpg');"></div>
+                    <div class="team-member-content">
+                        <h3 class="team-member-name">Hyacinth Elijah </h3>
+                        <p class="team-member-role">Deputy Lead admin </p>
+                        <p class="team-member-bio">Elijah oversees various groups and ensures that fresh, impactful content is consistently available every single day—without fail. His dedication helps keep the community spiritually nourished and engaged.
+ .</p>
+                        <div class="social-links">
+                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                
+                <div class="team-member">
+                    <div class="team-member-image" style="background-image: url('Isreal.jpg');"></div>
+                    <div class="team-member-content">
+                        <h3 class="team-member-name">Isreal princess </h3>
+                        <p class="team-member-role">Head of trainee </p>
+                        <p class="team-member-bio">Princess is responsible for overseeing the recruitment of new group admins, with a special focus on expanding and strengthening the network within the Nigeria region. Her leadership ensures that every group is guided by capable and committed hands..</p>
+                        <div class="social-links">
+                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                
+                <div class="team-member">
+                    <div class="team-member-image" style="background-image: url('m.jpg');"></div>
+                    <div class="team-member-content">
+                        <h3 class="team-member-name">Mary </h3>
+                        <p class="team-member-role"> Head admin in Kenyan </p>
+                        <p class="team-member-bio">Mary serves as the Head Admin of the Kenyan Christian Daily Guide 📜 platform and leads the training and mentorship of all Kenyan-based admins. Her role is vital in equipping leaders and ensuring the vision of the platform thrives across the region.
+
+</p>
+                        <div class="social-links">
+                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="team-member-image" style="background-image: url('oko.jpg');"></div>
+                    <div class="team-member-content">
+                        <h3 class="team-member-name">Okoo Enuice </h3>
+                        <p class="team-member-role">Deputy admin trainee </p>
+                        <p class="team-member-bio">Sister Eunice is always available and deeply committed to the training and onboarding of new admins. Her passion for growth and mentorship plays a crucial role in building a strong, well-equipped team that carries the vision of Christian Daily Guide 📜 with excellence. .</p>
+                        <div class="social-links">
+                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="cta-section">
+            <div class="cta-content">
+                <h3 class="cta-title">Join Our Mission</h3>
+                <p class="cta-description">Whether through prayer, financial support, or sharing our resources, you can help us reach more believers with daily spiritual nourishment.</p>
+                <button class="btn btn-primary">Partner With Us</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <div class="footer-logo">Christian <span>Daily Guide</span></div>
+                <p class="footer-about">Providing daily spiritual nourishment through morning prayers, inspirational thoughts, evening reflections, and night prayers since 2015.</p>
+                <div class="footer-social-links">
+                    <a href="#" class="footer-social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="footer-social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="footer-social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="footer-social-icon"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h3 class="footer-heading">Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Today's Content</a></li>
+                    <li><a href="archive.html">Weekly Archive</a></li>
+                    <li><a href="downloads.html">Free Downloads</a></li>
+                    <li><a href="prayer.html">Prayer Requests</a></li>
+                    <li><a href="#">Bible Study Resources</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h3 class="footer-heading">Resources</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Wallpapers</a></li>
+                    <li><a href="#">Printable Devotionals</a></li>
+                    <li><a href="#">Prayer Journals</a></li>
+                    <li><a href="#">Bible Reading Plans</a></li>
+                    <li><a href="#">Audio Devotionals</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h3 class="footer-heading">Contact</h3>
+                <ul class="footer-links">
+                    <li><a href="mailto:info@christiandailyguide.com">info@christiandailyguide.com</a></li>
+                    <li><a href="#">Support Center</a></li>
+                    <li><a href="#">Submit Prayer Request</a></li>
+                    <li><a href="#">Become a Contributor</a></li>
+                    <li><a href="#">Advertise With Us</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            &copy; 2025 Christian Daily Guide. All Rights Reserved. Powered by SkillSphere. 
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.querySelector('.hamburger');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const closeMenuBtn = document.querySelector('.close-menu');
+            const overlay = document.querySelector('.overlay');
+            const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
+            
+            function toggleMenu() {
+                hamburger.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+                overlay.classList.toggle('active');
+                document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : 'auto';
+            }
+            
+            hamburger.addEventListener('click', toggleMenu);
+            closeMenuBtn.addEventListener('click', toggleMenu);
+            overlay.addEventListener('click', toggleMenu);
+            
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', toggleMenu);
+            });
+            
+            // Button functionality
+            document.querySelectorAll('.btn').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const text = this.textContent.trim();
+                    
+                    if (text.includes('Login')) {
+                        window.location.href = 'login.html';
+                    } else if (text.includes('Sign Up')) {
+                        window.location.href = 'signup.html';
+                    } else if (text.includes('Read Our Story')) {
+                        document.querySelector('.about-title').scrollIntoView({ behavior: 'smooth' });
+                    } else if (text.includes('Partner With Us')) {
+                        alert('Thank you for your interest in partnering with us! A giving form would appear here.');
+                    }
+                });
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
