@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prayer Requests | Christian Daily Guide</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #8e793e;
+            --accent: #3498db;
+            --light: #f8f9fa;
+            --dark: #1a252f;
+            --success: #27ae60;
+            --font-heading: 'Merriweather', serif;
+            --font-body: 'Open Sans', sans-serif;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e7ec 100%);
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        header {
+            background: linear-gradient(120deg, var(--primary) 0%, #1a252f 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+            position: relative;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+        }
+        
+        .logo-text {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .logo-text span {
+            color: var(--secondary);
+        }
+        
+        nav {
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-links a.active {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-left: 1.5rem;
+        }
+        
+        .btn {
+            padding: 0.6rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            padding: 10px;
+            z-index: 1001;
+            transition: all 0.3s ease;
+        }
+        
+        .hamburger .line {
+            display: block;
+            width: 30px;
+            height: 3px;
+            background: var(--secondary);
+            margin: 6px 0;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+        
+        .hamburger.active .line:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+        
+        .hamburger.active .line:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active .line:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+        
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 280px;
+            height: 100vh;
+            background: var(--dark);
+            padding: 100px 2rem 2rem;
+            z-index: 999;
+            transition: all 0.4s ease;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .mobile-menu.active {
+            right: 0;
+        }
+        
+        .mobile-nav-links {
+            list-style: none;
+        }
+        
+        .mobile-nav-links li {
+            margin-bottom: 1.5rem;
+        }
+        
+        .mobile-nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-nav-links a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .mobile-auth-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .close-menu {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .close-menu:hover {
+            transform: rotate(90deg);
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .prayer-hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(26, 37, 47, 0.9)), url('https://images.unsplash.com/photo-1517457373958-b7bdd4587205?ixlib=rb-4.0.3') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 6rem 2rem;
+        }
+        
+        .prayer-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .prayer-hero h1 {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .prayer-hero p {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .prayer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        
+        .prayer-form-container, .prayer-requests-container {
+            background: white;
+            border-radius: 12px;
+            padding: 3rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--secondary);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(142, 121, 62, 0.2);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .privacy-option {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .privacy-option input {
+            width: 20px;
+            height: 20px;
+        }
+        
+        .prayer-requests {
+            max-height: 600px;
+            overflow-y: auto;
+            padding-right: 1rem;
+        }
+        
+        .prayer-request {
+            background: #f9f9f9;
+            border-left: 4px solid var(--secondary);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0 6px 6px 0;
+        }
+        
+        .prayer-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .prayer-name {
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .prayer-date {
+            color: #888;
+        }
+        
+        .prayer-text {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+        
+        .prayer-actions {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .prayer-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .prayer-btn.pray {
+            background: rgba(142, 121, 62, 0.1);
+            color: var(--secondary);
+        }
+        
+        .prayer-btn.reply {
+            background: rgba(52, 152, 219, 0.1);
+            color: var(--accent);
+        }
+        
+        .prayer-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .login-prompt {
+            background: rgba(142, 121, 62, 0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+            text-align: center;
+        }
+        
+        .login-prompt p {
+            margin-bottom: 1rem;
+        }
+        
+        .testimonials {
+            background: linear-gradient(to bottom, #f8f9fa 0%, #e9ecef 100%);
+            padding: 5rem 2rem;
+        }
+        
+        .testimonials-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .testimonial-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 5rem;
+            font-family: Georgia, serif;
+            color: rgba(142, 121, 62, 0.1);
+            line-height: 1;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .author-info h4 {
+            color: var(--primary);
+            margin-bottom: 0.2rem;
+        }
+        
+        .author-info p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .prayer-stats {
+            background: var(--primary);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+        
+        .stat-item {
+            padding: 2rem;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+        }
+        
+        .stat-label {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 4rem 2rem 2rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+        
+        .footer-logo {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-logo span {
+            color: var(--secondary);
+        }
+        
+        .footer-about {
+            color: #aaa;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-heading {
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-heading::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--secondary);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #777;
+        }
+        
+        @media (max-width: 992px) {
+            .nav-links,
+            .auth-buttons {
+                display: none;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .prayer-hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .prayer-hero p {
+                font-size: 1.2rem;
+            }
+            
+            .prayer-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .prayer-hero {
+                padding: 4rem 1rem;
+            }
+            
+            .prayer-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .prayer-form-container, .prayer-requests-container {
+                padding: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header-content {
+                padding: 0 1rem;
+            }
+            
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .stat-item {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-cross logo-icon"></i>
+                <div class="logo-text">Christian <span>Daily Guide</span></div>
+            </div>
+            
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="archive.html"><i class="fas fa-book-bible"></i> Archive</a></li>
+                    <li><a href="download.html"><i class="fas fa-download"></i> Downloads</a></li>
+                    <li><a href="prayer.html" class="active"><i class="fas fa-pray"></i> Prayer Requests</a></li>
+                    <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                </ul>
+                
+                <div class="auth-buttons">
+                    <a href="login.html" class="btn btn-outline">Login</a>
+                    <a href="signup.html" class="btn btn-primary">Sign Up</a>
+                </div>
+            </nav>
+            
+            <button class="hamburger">
+                <span class="line"></span>
+                <span class="line"></span>
+                <span class="line"></span>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu">
+            <button class="close-menu">
+                <i class="fas fa-times"></i>
+            </button>
+            <ul class="mobile-nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="archive.html"><i class="fas fa-book-bible"></i> Archive</a></li>
+                <li><a href="downloads.html"><i class="fas fa-download"></i> Downloads</a></li>
+                <li><a href="prayer.html" class="active"><i class="fas fa-pray"></i> Prayer Requests</a></li>
+                <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+            </ul>
+            <div class="mobile-auth-buttons">
+                <a href="login.html" class="btn btn-outline">Login</a>
+                <a href="signup.html" class="btn btn-primary">Sign Up</a>
+            </div>
+        </div>
+        
+        <div class="overlay"></div>
+    </header>
+
+    <!-- Prayer Hero Section -->
+    <section class="prayer-hero">
+        <div class="prayer-hero-content">
+            <h1>Prayer Changes Everything</h1>
+            <p>Submit your prayer requests and join our community in lifting up one another in prayer</p>
+            <a href="#prayer-form" class="btn btn-primary"><i class="fas fa-hands-praying"></i> Submit a Prayer Request</a>
+        </div>
+    </section>
+
+    <!-- Prayer Container -->
+    <section class="prayer-container">
+        <div class="prayer-form-container" id="prayer-form">
+            <h2 class="section-title">Submit Your Prayer Request</h2>
+            <form id="prayerForm">
+                <div class="form-group">
+                    <label for="name">Your Name (Optional)</label>
+                    <input type="text" id="name" class="form-control" placeholder="John Doe">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email (Optional - for updates)</label>
+                    <input type="email" id="email" class="form-control" placeholder="your@email.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="request">Your Prayer Request *</label>
+                    <textarea id="request" class="form-control" placeholder="Please share your prayer need..." required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>Prayer Category</label>
+                    <select class="form-control">
+                        <option value="">Select a category (optional)</option>
+                        <option value="healing">Healing</option>
+                        <option value="family">Family</option>
+                        <option value="finances">Finances</option>
+                        <option value="guidance">Guidance</option>
+                        <option value="salvation">Salvation for Loved Ones</option>
+                        <option value="thanksgiving">Thanksgiving</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="privacy-option">
+                    <input type="checkbox" id="public" checked>
+                    <label for="public">Share publicly (uncheck to keep private)</label>
+                </div>
+                
+                <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Submit Prayer Request</button>
+            </form>
+
+            <div class="login-prompt">
+                <p>Want to track your prayer requests and responses?</p>
+                <div style="display: flex; gap: 1rem; justify-content: center;">
+                    <a href="login.html" class="btn btn-outline">Login</a>
+                    <a href="signup.html" class="btn btn-primary">Sign Up</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="prayer-requests-container">
+            <h2 class="section-title">Recent Prayer Requests</h2>
+            <div class="prayer-requests">
+                <!-- Prayer Request 1 -->
+                <div class="prayer-request">
+                    <div class="prayer-meta">
+                        <span class="prayer-name">Sarah J.</span>
+                        <span class="prayer-date">July 18, 2025</span>
+                    </div>
+                    <p class="prayer-text">Please pray for my mother who is undergoing cancer treatment. The side effects have been very difficult and she's feeling discouraged. Pray for healing, strength, and for God's peace to surround our family during this challenging time.</p>
+                    <div class="prayer-actions">
+                        <button class="prayer-btn pray"><i class="fas fa-hands-praying"></i> I Prayed (24)</button>
+                        <button class="prayer-btn reply"><i class="fas fa-reply"></i> Reply</button>
+                    </div>
+                </div>
+                
+                <!-- Prayer Request 2 -->
+                <div class="prayer-request">
+                    <div class="prayer-meta">
+                        <span class="prayer-name">Michael T.</span>
+                        <span class="prayer-date">July 17, 2025</span>
+                    </div>
+                    <p class="prayer-text">I lost my job unexpectedly last week and have a family to support. Pray for God's provision and for the right job opportunity to come along quickly. Also pray that I would trust God during this uncertain time.</p>
+                    <div class="prayer-actions">
+                        <button class="prayer-btn pray"><i class="fas fa-hands-praying"></i> I Prayed (18)</button>
+                        <button class="prayer-btn reply"><i class="fas fa-reply"></i> Reply</button>
+                    </div>
+                </div>
+                
+                <!-- Prayer Request 3 -->
+                <div class="prayer-request">
+                    <div class="prayer-meta">
+                        <span class="prayer-name">Anonymous</span>
+                        <span class="prayer-date">July 16, 2025</span>
+                    </div>
+                    <p class="prayer-text">Struggling with anxiety and depression. Please pray that I would experience God's peace that surpasses all understanding and find healing through Christ.</p>
+                    <div class="prayer-actions">
+                        <button class="prayer-btn pray"><i class="fas fa-hands-praying"></i> I Prayed (32)</button>
+                        <button class="prayer-btn reply"><i class="fas fa-reply"></i> Reply</button>
+                    </div>
+                </div>
+                
+                <!-- Prayer Request 4 -->
+                <div class="prayer-request">
+                    <div class="prayer-meta">
+                        <span class="prayer-name">Grace & Mark L.</span>
+                        <span class="prayer-date">July 15, 2025</span>
+                    </div>
+                    <p class="prayer-text">Praise report! After years of infertility, we're expecting our first child! Thank you to everyone who prayed for us. Please continue praying for a healthy pregnancy and baby.</p>
+                    <div class="prayer-actions">
+                        <button class="prayer-btn pray"><i class="fas fa-hands-praying"></i> I Prayed (41)</button>
+                        <button class="prayer-btn reply"><i class="fas fa-reply"></i> Reply</button>
+                    </div>
+                </div>
+                
+                <!-- Prayer Request 5 -->
+                <div class="prayer-request">
+                    <div class="prayer-meta">
+                        <span class="prayer-name">David P.</span>
+                        <span class="prayer-date">July 14, 2025</span>
+                    </div>
+                    <p class="prayer-text">My son has wandered from faith and is making destructive life choices. Pray for God to draw him back and protect him from harm until that day comes.</p>
+                    <div class="prayer-actions">
+                        <button class="prayer-btn pray"><i class="fas fa-hands-praying"></i> I Prayed (29)</button>
+                        <button class="prayer-btn reply"><i class="fas fa-reply"></i> Reply</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prayer Stats -->
+    <section class="prayer-stats">
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-number">12,459</div>
+                <div class="stat-label">Prayers Shared</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">8,327</div>
+                <div class="stat-label">Prayers Answered</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">24,156</div>
+                <div class="stat-label">People Praying</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">365</div>
+                <div class="stat-label">Days of Prayer</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="testimonials-container">
+            <h2 class="section-title" style="text-align: center;">Answered Prayers</h2>
+            <p style="text-align: center; max-width: 700px; margin: 0 auto 2rem; color: #555;">Hear how God has been moving in response to the prayers of our community</p>
+            
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">After requesting prayer for my job search, I received three interviews in one week and accepted a position that's even better than what I had before. God is faithful!</p>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="Jennifer K." class="author-avatar">
+                        <div class="author-info">
+                            <h4>Jennifer K.</h4>
+                            <p>Chicago, IL</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">My husband's heart was hardened toward God for years. After many prayers from this community, he finally surrendered to Christ last month. Never stop praying!</p>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Melissa T." class="author-avatar">
+                        <div class="author-info">
+                            <h4>Melissa T.</h4>
+                            <p>Dallas, TX</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">The doctors said my cancer was terminal, but after thousands prayed through this site, my latest scans show no evidence of disease. To God be the glory!</p>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Robert L." class="author-avatar">
+                        <div class="author-info">
+                            <h4>Robert L.</h4>
+                            <p>Atlanta, GA</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <div class="footer-logo">Christian <span>Daily Guide</span></div>
+                <p class="footer-about">Providing daily spiritual nourishment through morning prayers, inspirational thoughts, evening reflections, and night prayers since 2015.</p>
+                <div class="social-links">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h3 class="footer-heading">Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Today's Content</a></li>
+                    <li><a href="archive.html">Weekly Archive</a></li>
+                    <li><a href="download.html">Downloads</a></li>
+                    <li><a href="prayer.html">Prayer Requests</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h3 class="footer-heading">Account</h3>
+                <ul class="footer-links">
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="signup.html">Sign Up</a></li>
+                    <li><a href="#">My Prayer Requests</a></li>
+                    <li><a href="#">Account Settings</a></li>
+                    <li><a href="#">Help Center</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h3 class="footer-heading">Newsletter</h3>
+                <p>Subscribe to receive daily inspiration and prayer updates directly to your inbox.</p>
+                <form>
+                    <input type="email" placeholder="Your Email Address" style="width: 100%; padding: 12px; margin: 10px 0; border-radius: 30px; border: none;">
+                    <button class="btn btn-primary" style="width: 100%;">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            &copy; 2025 Christian Daily Guide. All Rights Reserved.
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu functionality
+        const hamburger = document.querySelector('.hamburger');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const closeMenuBtn = document.querySelector('.close-menu');
+        const overlay = document.querySelector('.overlay');
+        const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
+        
+        function toggleMenu() {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            overlay.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : 'auto';
+        }
+        
+        hamburger.addEventListener('click', toggleMenu);
+        closeMenuBtn.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+        
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', toggleMenu);
+        });
+        
+        // Form submission
+        const prayerForm = document.getElementById('prayerForm');
+        prayerForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for submitting your prayer request. Our community will pray for you!');
+            this.reset();
+        });
+        
+        // Prayer button functionality
+        document.querySelectorAll('.prayer-btn.pray').forEach(button => {
+            button.addEventListener('click', function() {
+                const currentText = this.innerHTML;
+                const currentCount = parseInt(this.innerHTML.match(/\((\d+)\)/)[1]);
+                this.innerHTML = `<i class="fas fa-hands-praying"></i> I Prayed (${currentCount + 1})`;
+                this.style.backgroundColor = 'rgba(142, 121, 62, 0.2)';
+                
+                setTimeout(() => {
+                    this.innerHTML = currentText.replace(/\(\d+\)/, `(${currentCount + 1})`);
+                }, 1000);
+            });
+        });
+        
+        // Reply button functionality
+        document.querySelectorAll('.prayer-btn.reply').forEach(button => {
+            button.addEventListener('click', function() {
+                const prayerItem = this.closest('.prayer-request');
+                const name = prayerItem.querySelector('.prayer-name').textContent;
+                alert(`Reply form would appear here to respond to ${name}'s prayer request. In a full implementation, this would allow you to send an encouraging message.`);
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
