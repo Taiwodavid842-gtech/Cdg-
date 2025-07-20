@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Downloads | Christian Daily Guide</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #8e793e;
+            --accent: #3498db;
+            --light: #f8f9fa;
+            --dark: #1a252f;
+            --success: #27ae60;
+            --font-heading: 'Merriweather', serif;
+            --font-body: 'Open Sans', sans-serif;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e7ec 100%);
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        header {
+            background: linear-gradient(120deg, var(--primary) 0%, #1a252f 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+            position: relative;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+        }
+        
+        .logo-text {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .logo-text span {
+            color: var(--secondary);
+        }
+        
+        nav {
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-left: 1.5rem;
+        }
+        
+        .btn {
+            padding: 0.6rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 1rem;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .btn-primary {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            padding: 10px;
+            z-index: 1001;
+            transition: all 0.3s ease;
+        }
+        
+        .hamburger .line {
+            display: block;
+            width: 30px;
+            height: 3px;
+            background: var(--secondary);
+            margin: 6px 0;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+        
+        .hamburger.active .line:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+        
+        .hamburger.active .line:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active .line:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+        
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 280px;
+            height: 100vh;
+            background: var(--dark);
+            padding: 100px 2rem 2rem;
+            z-index: 999;
+            transition: all 0.4s ease;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .mobile-menu.active {
+            right: 0;
+        }
+        
+        .mobile-nav-links {
+            list-style: none;
+        }
+        
+        .mobile-nav-links li {
+            margin-bottom: 1.5rem;
+        }
+        
+        .mobile-nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-nav-links a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .mobile-auth-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .close-menu {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .close-menu:hover {
+            transform: rotate(90deg);
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Download Hero */
+        .download-hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(26, 37, 47, 0.9)), url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 6rem 2rem;
+        }
+        
+        .download-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .download-hero h1 {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .download-hero p {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        /* Download Content */
+        .download-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        
+        .download-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .download-title {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            color: var(--primary);
+        }
+        
+        .download-categories {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .category-button {
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            background: white;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .category-button:hover {
+            border-color: var(--secondary);
+            color: var(--secondary);
+        }
+        
+        .category-button.active {
+            background: var(--secondary);
+            color: white;
+            border-color: var(--secondary);
+        }
+        
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .download-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .download-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .download-card-image {
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .download-card-content {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .download-card-title {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .download-card-description {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            flex: 1;
+        }
+        
+        .download-card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #777;
+        }
+        
+        .download-card-type {
+            display: inline-block;
+            background: rgba(142, 121, 62, 0.1);
+            color: var(--secondary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .download-card-button {
+            margin-top: 1rem;
+        }
+        
+        .download-featured {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .download-featured .download-card-image {
+            height: 300px;
+        }
+        
+        .download-featured .download-card-title {
+            font-size: 1.8rem;
+        }
+        
+        .download-featured .download-card-description {
+            font-size: 1.1rem;
+        }
+        
+        /* Login Required Modal */
+        .login-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .login-modal.active {
+            display: flex;
+        }
+        
+        .login-modal-content {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .login-modal h3 {
+            font-family: var(--font-heading);
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        
+        .login-modal p {
+            margin-bottom: 2rem;
+            color: #666;
+        }
+        
+        .login-modal-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+        
+        .newsletter-section {
+            background: linear-gradient(to right, var(--primary), #1a252f);
+            color: white;
+            padding: 4rem 2rem;
+            margin: 4rem 0;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .newsletter-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .newsletter-title {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .newsletter-description {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 1rem;
+            border-radius: 30px 0 0 30px;
+            border: none;
+            font-size: 1rem;
+        }
+        
+        .newsletter-form input:focus {
+            outline: none;
+        }
+        
+        .newsletter-form button {
+            padding: 0 2rem;
+            border-radius: 0 30px 30px 0;
+            border: none;
+            background: var(--secondary);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .newsletter-form button:hover {
+            background: #7a6a35;
+        }
+        
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 4rem 2rem 2rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+        
+        .footer-logo {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-logo span {
+            color: var(--secondary);
+        }
+        
+        .footer-about {
+            color: #aaa;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-heading {
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-heading::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--secondary);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #777;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @media (max-width: 992px) {
+            .nav-links,
+            .auth-buttons {
+                display: none;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .download-hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .download-hero p {
+                font-size: 1.2rem;
+            }
+            
+            .download-featured {
+                grid-template-columns: 1fr;
+            }
+            
+            .download-featured .download-card-image {
+                height: 200px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .download-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .download-categories {
+                width: 100%;
+                overflow-x: auto;
+                padding-bottom: 0.5rem;
+            }
+            
+            .download-hero {
+                padding: 4rem 1rem;
+            }
+            
+            .download-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .download-title {
+                font-size: 2rem;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .newsletter-form input,
+            .newsletter-form button {
+                width: 100%;
+                border-radius: 30px;
+            }
+            
+            .login-modal-buttons {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .download-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-content {
+                padding: 0 1rem;
+            }
+            
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            
+            .newsletter-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-cross logo-icon"></i>
+                <div class="logo-text">Christian <span>Daily Guide</span></div>
+            </div>
+            
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="archive.html"><i class="fas fa-book-bible"></i> Archive</a></li>
+                    <li><a href="downloads.html" class="active"><i class="fas fa-download"></i> Downloads</a></li>
+                    <li><a href="prayer.html"><i class="fas fa-pray"></i> Prayer Requests</a></li>
+                    <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                </ul>
+                
+                <div class="auth-buttons">
+                    <a href="login.html" class="btn btn-outline">Login</a>
+                    <a href="signup.html" class="btn btn-primary">Sign Up</a>
+                </div>
+            </nav>
+            
+            <button class="hamburger">
+                <span class="line"></span>
+                <span class="line"></span>
+                <span class="line"></span>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu">
+            <button class="close-menu">
+                <i class="fas fa-times"></i>
+            </button>
+            <ul class="mobile-nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="archive.html"><i class="fas fa-book-bible"></i> Archive</a></li>
+                <li><a href="downloads.html" class="active"><i class="fas fa-download"></i> Downloads</a></li>
+                <li><a href="prayer.html"><i class="fas fa-pray"></i> Prayer Requests</a></li>
+                <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+            </ul>
+            <div class="mobile-auth-buttons">
+                <a href="login.html" class="btn btn-outline">Login</a>
+                <a href="signup.html" class="btn btn-primary">Sign Up</a>
+            </div>
+        </div>
+        
+        <div class="overlay"></div>
+    </header>
+
+    <!-- Download Hero Section -->
+    <section class="download-hero">
+        <div class="download-hero-content">
+            <h1>Free Spiritual Resources</h1>
+            <p>Download beautiful devotionals, wallpapers, and printable materials to strengthen your faith journey</p>
+            <a href="#downloads" class="btn btn-primary"><i class="fas fa-download"></i> Browse All Resources</a>
+        </div>
+    </section>
+
+    <!-- Download Content Section -->
+    <section class="download-container" id="downloads">
+        <div class="download-header">
+            <h2 class="download-title">Featured Downloads</h2>
+            <div class="download-categories">
+                <button class="category-button active">All Resources</button>
+                <button class="category-button">Wallpapers</button>
+                <button class="category-button">Devotionals</button>
+                <button class="category-button">Printables</button>
+                <button class="category-button">Audio</button>
+                <button class="category-button">Guides</button>
+            </div>
+        </div>
+        
+        <div class="download-grid">
+            <!-- Featured Download -->
+            <div class="download-card download-featured">
+                <div class="download-card-image" style="background-image: url('https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="download-card-content">
+                    <span class="download-card-type">Featured Resource</span>
+                    <h3 class="download-card-title">Complete 30-Day Devotional Pack</h3>
+                    <p class="download-card-description">Our most comprehensive devotional package including morning prayers, daily thoughts, evening reflections and night prayers for a full month of spiritual growth.</p>
+                    <div class="download-card-meta">
+                        <span><i class="fas fa-file-pdf"></i> PDF, EPUB, MOBI</span>
+                        <span>25 MB</span>
+                    </div>
+                    <button class="btn btn-primary download-card-button"><i class="fas fa-download"></i> Download Now</button>
+                </div>
+            </div>
+            
+            <!-- Download Card 1 -->
+            <div class="download-card">
+                <div class="download-card-image" style="background-image: url('https://images.unsplash.com/photo-1542662565-7e4b66bae529?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="download-card-content">
+                    <span class="download-card-type">Wallpaper Pack</span>
+                    <h3 class="download-card-title">Scripture Phone Wallpapers</h3>
+                    <p class="download-card-description">Beautiful HD wallpapers with inspirational Bible verses for your smartphone (iPhone & Android compatible).</p>
+                    <div class="download-card-meta">
+                        <span><i class="fas fa-image"></i> 20 Images</span>
+                        <span>15 MB</span>
+                    </div>
+                    <button class="btn btn-primary download-card-button"><i class="fas fa-download"></i> Download</button>
+                </div>
+            </div>
+            
+            <!-- Download Card 2 -->
+            <div class="download-card">
+                <div class="download-card-image" style="background-image: url('https://images.unsplash.com/photo-1508784411316-02b8cd4d3a3a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="download-card-content">
+                    <span class="download-card-type">Printable</span>
+                    <h3 class="download-card-title">Prayer Journal Template</h3>
+                    <p class="download-card-description">Printable prayer journal pages with guided prompts for daily prayer and scripture reflection.</p>
+                    <div class="download-card-meta">
+                        <span><i class="fas fa-file-pdf"></i> PDF</span>
+                        <span>8 MB</span>
+                    </div>
+                    <button class="btn btn-primary download-card-button"><i class="fas fa-download"></i> Download</button>
+                </div>
+            </div>
+            
+            <!-- Download Card 3 -->
+            <div class="download-card">
+                <div class="download-card-image" style="background-image: url('https://images.unsplash.com/photo-1531415074968-036ba1b575da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="download-card-content">
+                    <span class="download-card-type">Audio Devotional</span>
+                    <h3 class="download-card-title">Morning Prayer Audio Pack</h3>
+                    <p class="download-card-description">Audio recordings of morning prayers to listen during your commute or quiet time.</p>
+                    <div class="download-card-meta">
+                        <span><i class="fas fa-headphones"></i> MP3</span>
+                        <span>45 MB</span>
+                    </div>
+                    <button class="btn btn-primary download-card-button"><i class="fas fa-download"></i> Download</button>
+                </div>
+            </div>
+            
+            <!-- Download Card 4 -->
+            <div class="download-card">
+                <div class="download-card-image" style="background-image: url('https://images.unsplash.com/photo-1506126613408-eca07ce68773?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="download-card-content">
+                    <span class="download-card-type">Study Guide</span>
+                    <h3 class="download-card-title">Book of Psalms Study</h3>
+                    <p class="download-card-description">In-depth study guide for the Book of Psalms with reflection questions and prayer prompts.</p>
+                    <div class="download-card-meta">
+                        <span><i class="fas fa-file-pdf"></i> PDF</span>
+                        <span>12 MB</span>
+                    </div>
+                    <button class="btn btn-primary download-card-button"><i class="fas fa-download"></i> Download</button>
+                </div>
+            </div>
+            
+            <!-- Download Card 5 -->
+            <div class="download-card">
+                <div class="download-card-image" style="background-image: url('https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="download-card-content">
+                    <span class="download-card-type">Wallpaper Pack</span>
+                    <h3 class="download-card-title">Desktop Scripture Wallpapers</h3>
+                    <p class="download-card-description">High-resolution desktop wallpapers with encouraging Bible verses for your computer.</p>
+                    <div class="download-card-meta">
+                        <span><i class="fas fa-image"></i> 15 Images</span>
+                        <span>22 MB</span>
+                    </div>
+                    <button class="btn btn-primary download-card-button"><i class="fas fa-download"></i> Download</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Login Required Modal -->
+    <div class="login-modal" id="loginModal">
+        <div class="login-modal-content">
+            <h3>Login Required</h3>
+            <p>To access our free downloads, please log in to your account or create a new one.</p>
+            <div class="login-modal-buttons">
+                <a href="login.html" class="btn btn-primary">Login</a>
+                <a href="signup.html" class="btn btn-outline">Sign Up</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="newsletter-content">
+            <h3 class="newsletter-title">Get New Resources Directly to Your Inbox</h3>
+            <p class="newsletter-description">Subscribe to our newsletter to receive free weekly downloads, devotionals, and spiritual resources.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Your email address">
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <div class="footer-logo">Christian <span>Daily Guide</span></div>
+                <p class="footer-about">Providing daily spiritual nourishment through morning prayers, inspirational thoughts, evening reflections, and night prayers since 2015.</p>
+                <div class="social-links">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h3 class="footer-heading">Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Today's Content</a></li>
+                    <li><a href="archive.html">Weekly Archive</a></li>
+                    <li><a href="downloads.html">Free Downloads</a></li>
+                    <li><a href="prayer.html">Prayer Requests</a></li>
+                    <li><a href="#">Bible Study Resources</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h3 class="footer-heading">Resources</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Wallpapers</a></li>
+                    <li><a href="#">Printable Devotionals</a></li>
+                    <li><a href="#">Prayer Journals</a></li>
+                    <li><a href="#">Bible Reading Plans</a></li>
+                    <li><a href="#">Audio Devotionals</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h3 class="footer-heading">Contact</h3>
+                <ul class="footer-links">
+                    <li><a href="mailto:info@christiandailyguide.com">info@christiandailyguide.com</a></li>
+                    <li><a href="#">Support Center</a></li>
+                    <li><a href="#">Submit Prayer Request</a></li>
+                    <li><a href="#">Become a Contributor</a></li>
+                    <li><a href="#">Advertise With Us</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            &copy; 2025 Christian Daily Guide. All Rights Reserved. Powered by SkillSphere. 
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu functionality
+        const hamburger = document.querySelector('.hamburger');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const closeMenuBtn = document.querySelector('.close-menu');
+        const overlay = document.querySelector('.overlay');
+        const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
+        
+        function toggleMenu() {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            overlay.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : 'auto';
+        }
+        
+        hamburger.addEventListener('click', toggleMenu);
+        closeMenuBtn.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+        
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', toggleMenu);
+        });
+        
+        // Category filter functionality
+        const categoryButtons = document.querySelectorAll('.category-button');
+        
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                categoryButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                // In a real implementation, this would filter the downloads
+                alert('Filtering by: ' + this.textContent);
+            });
+        });
+        
+        // Download button functionality
+        const downloadButtons = document.querySelectorAll('.download-card-button');
+        const loginModal = document.getElementById('loginModal');
+        
+        downloadButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Show login modal instead of downloading
+                loginModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+        
+        // Close login modal when clicking outside
+        loginModal.addEventListener('click', function(e) {
+            if (e.target === loginModal) {
+                loginModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Newsletter form submission
+        const newsletterForm = document.querySelector('.newsletter-form');
+        
+        newsletterForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input').value;
+            if (email) {
+                alert('Thank you for subscribing with: ' + email);
+                this.querySelector('input').value = '';
+            } else {
+                alert('Please enter a valid email address');
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
